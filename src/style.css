@@ -1,0 +1,185 @@
+:root {
+  color-scheme: dark;
+  --bg: #1b1d21;
+  --panel: #24272c;
+  --line: #3a3f47;
+  --text: #e6e6e6;
+  --muted: #9aa0a8;
+  --accent: #d9a441;
+}
+
+body {
+  margin: 0;
+  padding: 1.5rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  line-height: 1.4;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+h3 {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.95rem;
+  color: var(--accent);
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.column {
+  flex: 1 1 24rem;
+  min-width: 20rem;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.hint {
+  margin: 0 0 0.6rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.error {
+  color: #ef8080;
+}
+
+.slot-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.slot-column {
+  flex: 1 1 10rem;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.item-row input[type="number"] {
+  width: 3.2rem;
+}
+
+input,
+button {
+  background: #15171a;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.2rem 0.35rem;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.priority {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: rank;
+}
+
+.priority-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.15rem 0.3rem;
+  border-radius: 4px;
+}
+
+/* A ticked row is a wanted row, so its rank and highlight come straight from
+   the checkbox rather than from anything JavaScript has to keep in step. */
+.priority-row:has(:checked) {
+  background: #2e333a;
+  counter-increment: rank;
+}
+
+.priority-name {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.priority-row:not(:has(:checked)) .priority-name {
+  color: var(--muted);
+}
+
+.priority-rank {
+  width: 1.4rem;
+  text-align: right;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.priority-row:has(:checked) .priority-rank::before {
+  content: counter(rank);
+}
+
+.move {
+  padding: 0 0.35rem;
+}
+
+.solve {
+  padding: 0.4rem 1.2rem;
+  background: var(--accent);
+  color: #1b1d21;
+  border-color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.summary {
+  margin: 0 0 0.8rem;
+  padding-left: 1.1rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.85rem;
+}
+
+th,
+td {
+  border: 1px solid var(--line);
+  padding: 0.25rem 0.45rem;
+  text-align: left;
+}
+
+th {
+  background: #2e333a;
+}
+
+td.empty {
+  color: var(--muted);
+}

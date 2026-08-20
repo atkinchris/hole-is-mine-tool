@@ -4,10 +4,31 @@ Equipment optimiser for [Hole is Mine](https://store.steampowered.com/app/450802
 
 Tell it how many Mini'Ohs you have, how much equipment you've unlocked, and which combos you care about most - it tells you what to equip.
 
+## Running it
+
+```sh
+npm install
+npm run dev
+```
+
+Then open the address Vite prints. `npm run build` produces a static `dist/` you can host anywhere.
+
+`npm test` checks the catalogue against the rules below - slots, unique names, combo sizes - and checks that the form renders every item and combo, that reordering a row keeps its tick, and that combo priority actually reaches the solver.
+
+`npm run lint` runs Biome over the project; `npm run format` applies the fixes it can.
+
+## Deployment
+
+Pushes to `main` run lint, typecheck, tests and a build, then deploy to GitHub Pages. Pull requests run the same checks without deploying.
+
+The site is served from a subpath, so the build takes its prefix from the `BASE_PATH` environment variable, which CI fills in from the Pages configuration - a rename or a custom domain needs no change here.
+
+Before the first deployment, set Settings -> Pages -> Build and deployment -> Source to "GitHub Actions".
+
 ## Data
 
-- `equipment.yaml` - the catalogue: the four slots, every item, and every combo with the items it requires. This is the single source of truth for the equipment lists that used to live in this README.
-- "request" - the input to the optimiser, for the combos and equipment to prioritise.
+- `src/data.ts` - the catalogue: the four slots, every item, and every combo with the items it requires. This is the single source of truth for the equipment lists that used to live in this README. A combo lists its items as a plain array; the slot each one occupies is looked up from the item name.
+- "request" - the input to the optimiser, for the combos and equipment to prioritise. In the browser this is the form: the Mini'Oh count, the unlocked copies per item, the ticked and ordered combo priority list, and the ticked and ordered gap-filling priority list.
 
 ## Rules
 
@@ -20,7 +41,7 @@ Tell it how many Mini'Ohs you have, how much equipment you've unlocked, and whic
 
 ### Equipment
 
-- Each item belongs to exactly one slot, declared in `equipment.yaml`.
+- Each item belongs to exactly one slot, declared in `src/data.ts`.
 - Item names are unique across all slots and serve as identifiers. Combo names are likewise unique identifiers.
 - The number of unlocked copies of each item is limited to four.
 - An item worn by one Mini'Oh is unavailable to another. Across all Mini'Ohs, the number wearing a given item must not exceed the number of unlocked copies.
@@ -28,7 +49,7 @@ Tell it how many Mini'Ohs you have, how much equipment you've unlocked, and whic
 
 ### Combos
 
-- A combo is a named bonus requiring a specific set of items, listed in `equipment.yaml`.
+- A combo is a named bonus requiring a specific set of items, listed in `src/data.ts`.
 - Combos must require either three or four items. A three-item combo leaves its Mini'Oh's fourth slot free for any suitable item.
 - A combo counts only when a single Mini'Oh wears every required item at the same time. Required items spread across several Mini'Ohs do not count.
 - A combo may be applied as many times as available equipment allows.
