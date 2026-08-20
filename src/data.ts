@@ -22,12 +22,12 @@ export interface Combo {
 }
 
 export const COMBOS: Combo[] = [
-  { name: "Whywolf", requires: ["Merchant Hat", "Mending Crutch", "Wolf Skin"] },
-  { name: "Movie Star", requires: ["Merchant Hat", "Heavy Tool", "Wrestling Mask"] },
-  { name: "Blood and Sand", requires: ["Plasticky Hat", "Bouncy Float", "Wrestling Mask"] },
+  { name: "Whole Demon", requires: ["Holy Hole", "Holy Wings", "Holy Harp", "Evil Mask"] },
   { name: "Wee Ooo Wee Ooo!", requires: ["Bravery Helmet", "Mending Crutch", "Kloning Gasmask"] },
   { name: "Festive Dragon", requires: ["Holy Hole", "Infinite Dynamite", "Dragoon Face"] },
-  { name: "Whole Demon", requires: ["Holy Hole", "Holy Wings", "Holy Harp", "Evil Mask"] },
+  { name: "Blood and Sand", requires: ["Plasticky Hat", "Bouncy Float", "Wrestling Mask"] },
+  { name: "Movie Star", requires: ["Merchant Hat", "Heavy Tool", "Wrestling Mask"] },
+  { name: "Whywolf", requires: ["Merchant Hat", "Mending Crutch", "Wolf Skin"] },
   { name: "Free Kite", requires: ["Holy Harp", "Friendship Wool", "Bravery Helmet"] },
   { name: "Deep Miner", requires: ["Lost Anchor", "Sonic Helmet", "Golden Pickaxe"] },
   { name: "Clumsy Pilot", requires: ["Plasticky Hat", "Holy Wings", "Mending Crutch"] },
