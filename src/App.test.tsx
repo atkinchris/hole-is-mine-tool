@@ -57,6 +57,11 @@ describe("the Mini'Oh input", () => {
     expect(field("workers").max).toBe(String(MAX_WORKERS));
     expect(field("workers").required).toBe(true);
   });
+
+  it("defaults to a full crew", () => {
+    const { field } = setUp();
+    expect(field("workers").value).toBe(String(MAX_WORKERS));
+  });
 });
 
 describe("the priority lists", () => {

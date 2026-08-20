@@ -184,7 +184,7 @@ export function App() {
                   name="workers"
                   min={0}
                   max={MAX_WORKERS}
-                  defaultValue="4"
+                  defaultValue={String(MAX_WORKERS)}
                   required
                 />
                 <label for="workers">How many Mini'Ohs you have (0 to {MAX_WORKERS})</label>
