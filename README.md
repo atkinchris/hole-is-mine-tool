@@ -46,5 +46,6 @@ Tell it how many Mini'Ohs you have, how much equipment you've unlocked, and whic
 
 - Once every combo in the priority list has been settled, a final stage must fill as many remaining empty slots as possible with leftover equipment.
 - Gap filling must never compromise a combo: combo counts are fixed as hard constraints before it runs.
-- Items placed by this stage are arbitrary among equally good options. Their purpose is to avoid an empty slot, not to identify the best pick.
+- Items placed by this stage are assigned in order of their priority in the request, provided they're still available.
+- Items not explicitly named in the request are arbitrary among equally good options. Their purpose is to avoid an empty slot, not to identify the best pick.
 - When the available equipment is insufficient to fill all slots, the remaining slots must stay empty and their number must be reported in the summary.
