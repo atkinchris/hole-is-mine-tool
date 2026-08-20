@@ -13,38 +13,38 @@ Tell it how many Mini'Ohs you have, how much equipment you've unlocked, and whic
 
 ### Mini'Ohs and slots
 
-- A Mini'Oh has exactly four equipment slots: Head, Back, Tool and Mask.
-- Each slot holds at most one item, and only an item of that slot's type. A slot may be left empty.
-- You can have between 0 and 16 Mini'Ohs.
+- Each Mini'Oh has exactly four equipment slots: Head, Back, Tool and Mask.
+- Each slot may hold at most one item, and only an item of that slot's type. Slots may be left empty.
+- The number of Mini'Ohs must be between 0 and 16.
 - Mini'Ohs are interchangeable (nothing distinguishes worker 3 from worker 7, for example).
 
 ### Equipment
 
-- Every item belongs to exactly one slot, declared in `equipment.yaml`.
-- Item names are unique across all slots and are the identifier. The same goes for combo names.
-- You can unlock a limited number of copies of each item, up to four.
-- An item worn by one Mini'Oh is not available to another. Across all Mini'Ohs, the number wearing a given item can never exceed the copies you own.
-- There is no requirement to use an item at all - not all items need to be worn (there's more equipment than slots across all Mini'Ohs).
+- Each item belongs to exactly one slot, declared in `equipment.yaml`.
+- Item names are unique across all slots and serve as identifiers. Combo names are likewise unique identifiers.
+- The number of unlocked copies of each item is limited to four.
+- An item worn by one Mini'Oh is unavailable to another. Across all Mini'Ohs, the number wearing a given item must not exceed the number of unlocked copies.
+- No item is required to be used - not all items need to be worn (there is more equipment than slots across all Mini'Ohs).
 
 ### Combos
 
-- A combo is a named bonus that requires a specific set of items, listed in `equipment.yaml`.
-- Combos can either require three or four items. A three item combo leaves its Mini'Oh's fourth slot free for anything.
-- A combo only counts if a single Mini'Oh wears every item it requires at the same time. Spreading the items across several Mini'Ohs achieves nothing.
-- A combo can be applied as many times as you have the equipment for. If you own the parts for three Whole Demons and have three Mini'Ohs spare, you get three.
-- One Mini'Oh can hold more than one combo at once if their items happen to satisfy both.
-- Only combos listed in the request should be pursued. A combo left off the list is never deliberately built, though it may still be reported if it falls out of the solution by accident.
-- A combo may not appear twice in the priority list.
+- A combo is a named bonus requiring a specific set of items, listed in `equipment.yaml`.
+- Combos must require either three or four items. A three-item combo leaves its Mini'Oh's fourth slot free for any suitable item.
+- A combo counts only when a single Mini'Oh wears every required item at the same time. Required items spread across several Mini'Ohs do not count.
+- A combo may be applied as many times as available equipment allows.
+- A Mini'Oh may hold more than one combo at once when its items satisfy both.
+- Only combos listed in the request may be pursued. A combo omitted from the request must never be deliberately built, though it may still be reported if it arises incidentally from the solution.
+- A combo must not appear twice in the request.
 
 ### How conflicts are settled
 
-- Combo priority is strictly lexicographic. The solver maximises how many Mini'Ohs wear the first combo in your list, freezes that count, then maximises the second under that constraint, and so on down the list.
-- No quantity of lower-priority combos can displace a single higher-priority one. If putting Holy Hole on a Whole Demon costs you two Festive Dragons, and Whole Demon is listed first, you get the Whole Demon.
-- Ties within a priority level are broken by whatever comes later in the list, then by the gap-filling stage.
+- Combo priority is strictly lexicographic. The solver maximises the number of Mini'Ohs wearing the first listed combo, fixes that count, then maximises the second under that constraint, and so on down the list.
+- No quantity of lower-priority combos may displace a single higher-priority combo. If putting Holy Hole on a Whole Demon costs two Festive Dragons and Whole Demon is listed first, the Whole Demon must be selected.
+- Ties within a priority level are resolved by later entries in the list, then by the gap-filling stage.
 
 ### Filling gaps
 
-- Once every combo in the priority list has been settled, a final stage fills as many remaining empty slots as possible with leftover equipment.
-- Gap filling never compromises a combo: the combo counts are already fixed as hard constraints by the time it runs.
-- Items placed by this stage are arbitrary among equally good options. They are there to avoid an empty slot, not because that item is the best pick.
-- If you own less equipment than you have slots to fill, the leftover slots stay empty and the summary reports how many.
+- Once every combo in the priority list has been settled, a final stage must fill as many remaining empty slots as possible with leftover equipment.
+- Gap filling must never compromise a combo: combo counts are fixed as hard constraints before it runs.
+- Items placed by this stage are arbitrary among equally good options. Their purpose is to avoid an empty slot, not to identify the best pick.
+- When the available equipment is insufficient to fill all slots, the remaining slots must stay empty and their number must be reported in the summary.
