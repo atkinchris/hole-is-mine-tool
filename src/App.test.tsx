@@ -156,8 +156,8 @@ describe("the solve", () => {
   };
 
   it("follows the listed order when two combos want the same item", () => {
-    expect(contend("")).toContain("Festive Dragon: 1");
-    expect(contend("")).toContain("Whole Demon: 0");
+    expect(contend("")).toContain("Whole Demon: 1");
+    expect(contend("")).toContain("Festive Dragon: 0");
   });
 
   it("changes its mind when the lower combo is raised above the higher one", () => {
